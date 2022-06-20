@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -32,7 +33,6 @@ android {
     //data binding library
     buildFeatures {
         dataBinding = true
-
     }
 }
 
@@ -62,6 +62,12 @@ dependencies {
     //glide
     implementation 'com.github.bumptech.glide:glide:4.13.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
+    //Dagger
+    implementation("com.google.dagger:dagger:2.37")
+    implementation("com.google.dagger:dagger-android:2.37")
+    implementation("com.google.dagger:dagger-android-support:2.37")
+    kapt("com.google.dagger:dagger-android-processor:2.37")
+    kapt("com.google.dagger:dagger-compiler:2.37")
 
 
 }

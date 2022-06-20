@@ -1,5 +1,6 @@
 package com.example.firstworktask.main
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -36,6 +38,7 @@ class DiffUtilAdapterMain : ListAdapter<Response, FixtureViewHolder> (UserItemDi
 }
 
 class FixtureViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+    @SuppressLint("SetTextI18n")
     fun bindTo(data : Response){
         itemView.setLayoutParams(
             LinearLayout.LayoutParams(
@@ -45,16 +48,14 @@ class FixtureViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         )
 
 
+        /* Send intent to SecondActivity with the selected fixture ID */
         itemView.setOnClickListener {
-            Toast.makeText(itemView.context,data.fixture.id.toString(),Toast.LENGTH_SHORT).show()
             val intent = Intent(itemView.context,SecondActivity::class.java)
             intent.putExtra("id",data.fixture.id)
-            //println("SENDING INTENT WITH ID ================ ${data.fixture.id}")
-            Log.d("idShit","SENDING INTENT WITH ID ================ ${data.fixture.id}")
             itemView.context.startActivity(intent)
 
         }
-
+        /* Bind the views to their data */
         val homeTeamTextView: TextView = itemView.findViewById(R.id.firstTeamTextView)
         val awayTeamTextView: TextView = itemView.findViewById(R.id.secondTeamTextView)
         val homeTeamScore: TextView = itemView.findViewById(R.id.homeTeamScore)
@@ -63,23 +64,23 @@ class FixtureViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val awayTeamImage: ImageView = itemView.findViewById(R.id.secondTeamImageView)
         val dateTextView: TextView = itemView.findViewById(R.id.dateTV)
 
-
         homeTeamTextView.text = data.teams.home.name.toString()
-        // Log.d("ADAPTER", "CURRENTLY IN ADAPTER - ${data[position].teams.home.name}")
         awayTeamTextView.text = data.teams.away.name.toString()
-        homeTeamScore.text = data.score.fulltime.home.toString()
-        awayTeamScore.text = data.score.fulltime.away.toString()
+
+        if(data.fixture.status.long.equals("Not Started")) {
+            homeTeamScore.text = "TBD"
+            awayTeamScore.text = "TBD"
+        }
+
+
+        else {
+            homeTeamScore.text = data.score.fulltime.home.toString()
+            awayTeamScore.text = data.score.fulltime.away.toString()
+        }
         dateTextView.text = data.fixture.date.toString()
         Glide.with(itemView.context).load(data.teams.home.logo).into(homeTeamImage)
         Glide.with(itemView.context).load(data.teams.away.logo).into(awayTeamImage)
-        /*
-        homeTeamImage.setImageBitmap(data.teams.home.logoImage)
-        awayTeamImage.setImageBitmap(data.teams.away.logoImage)
 
-         */
-
-
-       // tv.text = user.name
 
     }
 }

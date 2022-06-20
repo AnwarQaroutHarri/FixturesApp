@@ -3,6 +3,9 @@ package com.example.firstworktask.Retrofit
 import okhttp3.Interceptor
 import okhttp3.Response
 
+/**
+ * This interceptor adds the necessary headers to send with each request.
+ */
 class FixtureInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()

@@ -2,32 +2,23 @@ package com.example.firstworktask.second.repository
 
 import androidx.lifecycle.MutableLiveData
 import com.example.firstworktask.Retrofit.RetrofitInstance
+import com.example.firstworktask.api.FixtureAPI
 import com.example.firstworktask.second.models.FixtureDetailsPackage.FixtureDetailsModel
 import java.lang.StringBuilder
+import javax.inject.Inject
 
-class FixtureDetailsRepository {
+class FixtureDetailsRepository @Inject constructor() {
+    @Inject
+    lateinit var retrofitInstance: FixtureAPI
 
     /*
-    suspend fun getFixtureDetailsById(
-        fixtureDetails: MutableLiveData<FixtureDetailsModel>,
-        id: Int
-    ) {
-        fixtureDetails.value = RetrofitInstance.fixtureAPI.getFixtureDetailsById(id)
-        for(element in fixtureDetails.value!!.response) {
-            println("AIGHT LETS SEE ${element.score.fulltime.home.toString()}")
-        }
-    }
-
+    get fixture events by ID, populate them into the list.
      */
-
-
     suspend fun getFixtureDetailsByID(strList: MutableList<String>, id: Int) {
         val str = StringBuilder()
-        val response = RetrofitInstance.fixtureAPI.getFixtureDetailsById(id).response[0].events
+        val response = retrofitInstance.getFixtureDetailsById(id).response[0].events
         for(event in response){
-            println(event.time.elapsed.toString() + "-----1")
             str.append(event.time.elapsed.toString() + ": ")
-           // println(str.toString() + "-----2")
             if(event.type.equals("Card")) {
                 str.append(event.detail.toString())
                 str.append(" - ${event.player.name.toString()} (${event.team.name})")
@@ -43,7 +34,6 @@ class FixtureDetailsRepository {
             else if(event.type.equals("subst")) {
                 str.append("Substitution (${event.team.name.toString()}): ${event.assist.name} -> ${event.player.name}")
             }
-            //str.append("\n")
             strList.add(str.toString())
             str.clear()
         }

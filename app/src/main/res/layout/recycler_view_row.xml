@@ -14,93 +14,101 @@
         android:layout_marginBottom="0dp"
         android:paddingBottom="0dp">
 
+        <ImageView
+            android:id="@+id/firstTeamImageView"
+            android:layout_width="84dp"
+            android:layout_height="101dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="9dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/firstTeamTextView"
+            app:layout_constraintEnd_toStartOf="@+id/homeTeamScore"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.705"
+            tools:srcCompat="@tools:sample/avatars" />
+
         <TextView
             android:id="@+id/awayTeamScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="118dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="20dp"
             android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/homeTeamScore"
+            app:layout_constraintEnd_toStartOf="@+id/secondTeamImageView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/secondTeamImageView"
-            android:layout_width="80dp"
-            android:layout_height="69dp"
+            android:layout_width="84dp"
+            android:layout_height="99dp"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/secondTeamTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.649"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/firstTeamTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
+
+            android:layout_marginTop="164dp"
+            android:layout_marginEnd="76dp"
             android:text="@string/team1"
             android:textAlignment="center"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/firstTeamImageView" />
+            app:layout_constraintEnd_toStartOf="@+id/dateTV"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/secondTeamTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="28dp"
+            android:layout_marginTop="164dp"
+            android:layout_marginEnd="40dp"
             android:text="@string/team2"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/secondTeamImageView" />
-
-        <ImageView
-            android:id="@+id/firstTeamImageView"
-            android:layout_width="72dp"
-            android:layout_height="66dp"
-            android:layout_marginTop="4dp"
-            app:layout_constraintEnd_toStartOf="@+id/secondTeamImageView"
-            app:layout_constraintHorizontal_bias="0.028"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <TextView
-            android:id="@+id/homeTeamScore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="71dp"
-            android:text="TextView"
-            app:layout_constraintEnd_toStartOf="@+id/awayTeamScore"
-            app:layout_constraintStart_toEndOf="@+id/firstTeamImageView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="44dp"
+            android:layout_marginStart="16dp"
             android:text="-"
             android:textAlignment="center"
-            app:layout_constraintEnd_toStartOf="@+id/awayTeamScore"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@+id/awayTeamScore"
+            app:layout_constraintStart_toStartOf="@+id/dateTV"
+            app:layout_constraintTop_toTopOf="@+id/awayTeamScore"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/dateTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="68dp"
-            android:layout_marginEnd="184dp"
+            android:layout_marginTop="164dp"
+            android:layout_marginEnd="196dp"
             android:text="TextView"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/homeTeamScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/textView3"
+            app:layout_constraintEnd_toStartOf="@+id/dateTV"
+            app:layout_constraintTop_toTopOf="@+id/textView3"
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
