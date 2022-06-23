@@ -36,12 +36,14 @@ class MainActivity : DaggerAppCompatActivity() {
         binding.MatchesRecyclerView.adapter = adapter
         binding.MatchesRecyclerView.isClickable = true
 
-        binding.MatchesRecyclerView.addItemDecoration(
+       /* binding.MatchesRecyclerView.addItemDecoration(
             DividerItemDecoration(
                 applicationContext,
                 DividerItemDecoration.VERTICAL
             )
         )
+
+        */
 
         viewModel.fixtureRequiredFields.observe(this, Observer { e->
             adapter.submitList(e)
