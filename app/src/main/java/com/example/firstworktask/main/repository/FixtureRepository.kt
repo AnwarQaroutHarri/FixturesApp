@@ -22,6 +22,7 @@ class FixtureRepository @Inject constructor(){
     lateinit var fixturesBetweenTwoDates : List<Response>
 
     /* Get the required fixtures from retrofit and return them as a list */
+    /*
     suspend fun getRequiredFixtures() : List<Response> {
         fixturesBetweenTwoDates = retrofitInstance.getFixturesForSeasonBetweenTwoDates().response
         withContext(Dispatchers.Default){
@@ -31,6 +32,19 @@ class FixtureRepository @Inject constructor(){
             }
         }
         return fixturesBetweenTwoDates
+    }
+
+     */
+
+    suspend fun getFixturesByDate(date: String) : List<Response> {
+        val fixtures = retrofitInstance.getFixturesByDate(date).response
+        withContext(Dispatchers.Default){
+            for(element in fixtures){
+                element.fixture.date = element.fixture.date.replace("T","\n")
+                element.fixture.date = element.fixture.date.replaceAfter("+","")
+            }
+        }
+        return fixtures
     }
 
 }

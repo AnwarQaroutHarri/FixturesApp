@@ -15,4 +15,6 @@ interface FixtureAPI {
     @GET("fixtures")
     suspend fun getFixtureDetailsById(@Query("id") id: Int) : FixtureDetailsModel
 
+    @GET("fixtures")
+    suspend fun getFixturesByDate(@Query("date") date: String) : FixtureModel
 }

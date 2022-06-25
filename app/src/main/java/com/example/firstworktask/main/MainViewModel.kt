@@ -13,12 +13,10 @@ class MainViewModel @Inject constructor(private val fixtureRepository: FixtureRe
 
     var fixtureRequiredFields: MutableLiveData<List<Response>> = MutableLiveData()
 
-    /*
-    On initialization, fetch the fextures from the repository and populate them in the livedata.
-     */
-    init {
+
+    fun getFixturesByDate(date: String){
         viewModelScope.launch {
-            fixtureRequiredFields.value = fixtureRepository.getRequiredFixtures()
+            fixtureRequiredFields.value = fixtureRepository.getFixturesByDate(date)
         }
     }
 
