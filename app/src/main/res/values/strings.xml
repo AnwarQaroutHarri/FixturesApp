@@ -3,4 +3,6 @@
     <string name="team1">team1</string>
     <string name="team2">team2</string>
     <string name="vs">vs</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

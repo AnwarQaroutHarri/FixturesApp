@@ -6,6 +6,11 @@
         <entry key="app/src/main/res/layout/abc.xml" value="0.15715579710144928" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.39166666666666666" />
         <entry key="app/src/main/res/layout/activity_second.xml" value="0.15715579710144928" />
+        <entry key="app/src/main/res/layout/activity_swipe_view.xml" value="0.20652173913043478" />
+        <entry key="app/src/main/res/layout/blank_fragment.xml" value="0.20625" />
+        <entry key="app/src/main/res/layout/fragment_first_date.xml" value="0.20625" />
+        <entry key="app/src/main/res/layout/fragment_second_date.xml" value="0.20652173913043478" />
+        <entry key="app/src/main/res/layout/fragment_third_date.xml" value="0.20652173913043478" />
         <entry key="app/src/main/res/layout/recycler_view_row.xml" value="0.2253143310546875" />
       </map>
     </option>

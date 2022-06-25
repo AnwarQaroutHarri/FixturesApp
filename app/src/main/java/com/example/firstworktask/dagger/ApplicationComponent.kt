@@ -1,7 +1,6 @@
 package com.example.firstworktask.dagger
 
 import android.app.Application
-import com.example.firstworktask.MainActivity
 import com.example.firstworktask.Retrofit.RetrofitInstance
 import com.example.firstworktask.main.MainViewModel
 import com.example.firstworktask.second.SecondViewModel
