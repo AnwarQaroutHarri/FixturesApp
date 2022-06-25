@@ -6,17 +6,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.firstworktask.databinding.ActivitySwipeViewBinding
-import com.example.firstworktask.main.FirstDateFragment
-import com.example.firstworktask.main.SecondDateFragment
-import com.example.firstworktask.main.ThirdDateFragment
-import com.example.firstworktask.main.ViewPager2Adapter
+import com.example.firstworktask.main.*
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class SwipeViewActivity : AppCompatActivity(), TabLayoutMediator.TabConfigurationStrategy {
     lateinit var viewPager: ViewPager2
     lateinit var tabLayout: TabLayout
-    var titles: MutableList<String> = mutableListOf("Yesterday","Today","Tomorrow")
+    var titles: MutableList<String> = mutableListOf("Yesterday","Today","Tomorrow","Date")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_swipe_view)
@@ -36,7 +33,8 @@ class SwipeViewActivity : AppCompatActivity(), TabLayoutMediator.TabConfiguratio
         var fragmentList : MutableList<Fragment> = mutableListOf(
             FirstDateFragment(),
             SecondDateFragment(),
-            ThirdDateFragment()
+            ThirdDateFragment(),
+            CalendarFragment()
         )
         viewPager2Adapter.setData(fragmentList)
         viewPager.adapter = viewPager2Adapter
