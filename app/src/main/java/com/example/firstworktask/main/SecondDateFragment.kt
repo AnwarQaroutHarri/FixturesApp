@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.firstworktask.R
 import com.example.firstworktask.dagger.ViewModelFactory
 import com.example.firstworktask.databinding.FragmentFirstDateBinding
+import com.google.android.material.tabs.TabLayout
 import dagger.android.support.DaggerFragment
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -41,7 +43,6 @@ class SecondDateFragment : DaggerFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = viewModelFactory.create(MainViewModel::class.java)
-        println("Current Date and Time is: $formatted")
 
     }
 

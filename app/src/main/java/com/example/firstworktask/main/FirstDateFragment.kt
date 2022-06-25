@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.firstworktask.R
 import com.example.firstworktask.SwipeViewActivity
 import com.example.firstworktask.dagger.ViewModelFactory
 import com.example.firstworktask.databinding.FragmentFirstDateBinding
+import com.google.android.material.tabs.TabLayout
 import dagger.android.support.DaggerFragment
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -42,7 +44,12 @@ private const val ARG_PARAM2 = "param2"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = viewModelFactory.create(MainViewModel::class.java)
-        println("Current Date and Time is: $formatted")
+        val tab : TabLayout? = activity?.findViewById(R.id.tabLayout)
+        println("${tab?.selectedTabPosition} --das-das-d-asd-asd-as-d")
+
+        if(tab?.selectedTabPosition == 0){
+
+        }
 
     }
 
