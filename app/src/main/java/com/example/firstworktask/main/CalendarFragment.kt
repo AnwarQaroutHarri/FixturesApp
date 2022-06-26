@@ -16,9 +16,6 @@ import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 class CalendarFragment : DaggerFragment() {
-    val current = LocalDateTime.now()
-    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-    val formatted = current.format(formatter)
 
     private lateinit var binding: FragmentCalendarBinding
 
@@ -32,7 +29,6 @@ class CalendarFragment : DaggerFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = viewModelFactory.create(FixturesViewModel::class.java)
-        println("Current Date and Time is: $formatted")
 
     }
 
