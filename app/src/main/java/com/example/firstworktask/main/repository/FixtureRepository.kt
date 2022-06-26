@@ -9,41 +9,24 @@ import com.example.firstworktask.main.models.FixtureModelPackage.Response
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.net.URL
+import java.text.SimpleDateFormat
+import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 import javax.inject.Inject
 
-/*
-
- */
 
 class FixtureRepository @Inject constructor(){
     @Inject
     lateinit var retrofitInstance: FixtureAPI
 
-    lateinit var fixturesBetweenTwoDates : List<Response>
-
-    /* Get the required fixtures from retrofit and return them as a list */
-    /*
-    suspend fun getRequiredFixtures() : List<Response> {
-        fixturesBetweenTwoDates = retrofitInstance.getFixturesForSeasonBetweenTwoDates().response
-        withContext(Dispatchers.Default){
-            for(element in fixturesBetweenTwoDates){
-                element.fixture.date = element.fixture.date.replace("T","\n")
-                element.fixture.date = element.fixture.date.replaceAfter("+","")
-            }
-        }
-        return fixturesBetweenTwoDates
-    }
-
-     */
-
     suspend fun getFixturesByDate(date: String) : List<Response> {
         val fixtures = retrofitInstance.getFixturesByDate(date).response
-        withContext(Dispatchers.Default){
+        val formatter : DateTimeFormatter = DateTimeFormatter.ofPattern("uuuu-MM-dd")
             for(element in fixtures){
-                element.fixture.date = element.fixture.date.replace("T","\n")
-                element.fixture.date = element.fixture.date.replaceAfter("+","")
+                val offsetDateTime = OffsetDateTime.parse(element.fixture.date)
+                element.fixture.date = offsetDateTime.format(formatter)
             }
-        }
         return fixtures
     }
 
