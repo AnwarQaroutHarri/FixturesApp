@@ -1,18 +1,15 @@
 package com.example.firstworktask.main
 
-import android.opengl.Visibility
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CalendarView
-import androidx.constraintlayout.motion.widget.Key.VISIBILITY
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firstworktask.dagger.ViewModelFactory
 import com.example.firstworktask.databinding.FragmentCalendarBinding
-import com.example.firstworktask.databinding.FragmentFirstDateBinding
 import dagger.android.support.DaggerFragment
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -38,13 +35,13 @@ class CalendarFragment : DaggerFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: FixturesViewModel
     private var adapter = DiffUtilAdapterMain()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = viewModelFactory.create(MainViewModel::class.java)
+        viewModel = viewModelFactory.create(FixturesViewModel::class.java)
         println("Current Date and Time is: $formatted")
 
     }

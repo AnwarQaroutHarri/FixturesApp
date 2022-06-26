@@ -2,25 +2,19 @@ package com.example.firstworktask.main
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.firstworktask.R
 import com.example.firstworktask.main.models.FixtureModelPackage.Response
-import com.example.firstworktask.second.SecondActivity
-import com.google.android.gms.fido.fido2.api.common.RequestOptions
-import java.time.Duration
+import com.example.firstworktask.second.FixtureDetailsActivity
 
 
 class DiffUtilAdapterMain : ListAdapter<Response, FixtureViewHolder> (UserItemDiffCallback()){
@@ -50,7 +44,7 @@ class FixtureViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
         /* Send intent to SecondActivity with the selected fixture ID */
         itemView.setOnClickListener {
-            val intent = Intent(itemView.context,SecondActivity::class.java)
+            val intent = Intent(itemView.context,FixtureDetailsActivity::class.java)
             intent.putExtra("id",data.fixture.id)
             itemView.context.startActivity(intent)
 

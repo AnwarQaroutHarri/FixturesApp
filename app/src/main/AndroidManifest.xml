@@ -24,7 +24,7 @@
         </activity>
 
         <activity
-            android:name=".second.SecondActivity"
+            android:name=".second.FixtureDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

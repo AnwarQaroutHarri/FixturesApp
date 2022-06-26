@@ -2,8 +2,8 @@ package com.example.firstworktask.dagger
 
 import android.app.Application
 import com.example.firstworktask.Retrofit.RetrofitInstance
-import com.example.firstworktask.main.MainViewModel
-import com.example.firstworktask.second.SecondViewModel
+import com.example.firstworktask.main.FixturesViewModel
+import com.example.firstworktask.second.FixtureDetailsViewModel
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -15,8 +15,8 @@ import javax.inject.Singleton
 interface ApplicationComponent : AndroidInjector<MyApplication> {
 
 
-    fun getMainViewModel() : MainViewModel
-    fun getSecondViewModel() : SecondViewModel
+    fun getMainViewModel(): FixturesViewModel
+    fun getSecondViewModel(): FixtureDetailsViewModel
 
     //fun inject(activity: MainActivity)
 

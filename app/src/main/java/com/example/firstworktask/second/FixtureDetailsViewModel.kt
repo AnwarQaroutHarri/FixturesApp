@@ -9,9 +9,12 @@ import com.example.firstworktask.second.repository.FixtureDetailsRepository
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class SecondViewModel @Inject constructor(private val fixtureDetailsRepository: FixtureDetailsRepository): ViewModel() {
-    var fixtureDetailsData : MutableList<String> = mutableListOf()
-    var fixtureDetails: MutableLiveData<MutableList<String>> = MutableLiveData()
+class FixtureDetailsViewModel @Inject constructor(private val fixtureDetailsRepository: FixtureDetailsRepository): ViewModel() {
+    private var fixtureDetailsData : MutableList<String> = mutableListOf()
+    private var _fixtureDetails: MutableLiveData<MutableList<String>> = MutableLiveData()
+
+    val fixtureDetails
+    get() = _fixtureDetails
 
     /* Send ID to repository and let it search for details with the given ID.
         Send the List to populate it, then post data of the list into the LiveData.
@@ -19,7 +22,7 @@ class SecondViewModel @Inject constructor(private val fixtureDetailsRepository: 
     fun getFixtureDetailsByID(id: Int){
         viewModelScope.launch {
             fixtureDetailsRepository.getFixtureDetailsByID(fixtureDetailsData,id)
-            fixtureDetails.postValue(fixtureDetailsData)
+            _fixtureDetails.postValue(fixtureDetailsData)
         }
     }
 }

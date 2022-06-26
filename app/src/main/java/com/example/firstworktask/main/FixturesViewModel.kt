@@ -8,15 +8,17 @@ import com.example.firstworktask.main.repository.FixtureRepository
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(private val fixtureRepository: FixtureRepository): ViewModel() {
+class FixturesViewModel @Inject constructor(private val fixtureRepository: FixtureRepository) :
+    ViewModel() {
+
+    private var _fixtureRequiredFields: MutableLiveData<List<Response>> = MutableLiveData()
+    val fixtureRequiredFields
+        get() = _fixtureRequiredFields
 
 
-    var fixtureRequiredFields: MutableLiveData<List<Response>> = MutableLiveData()
-
-
-    fun getFixturesByDate(date: String){
+    fun getFixturesByDate(date: String) {
         viewModelScope.launch {
-            fixtureRequiredFields.value = fixtureRepository.getFixturesByDate(date)
+            _fixtureRequiredFields.value = fixtureRepository.getFixturesByDate(date)
         }
     }
 

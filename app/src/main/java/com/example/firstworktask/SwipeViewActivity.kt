@@ -1,14 +1,18 @@
 package com.example.firstworktask
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.firstworktask.databinding.ActivitySwipeViewBinding
-import com.example.firstworktask.main.*
+import com.example.firstworktask.main.CalendarFragment
+import com.example.firstworktask.main.FixturesFragment
+import com.example.firstworktask.main.ViewPager2Adapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class SwipeViewActivity : AppCompatActivity(), TabLayoutMediator.TabConfigurationStrategy {
     lateinit var viewPager: ViewPager2
@@ -24,21 +28,21 @@ class SwipeViewActivity : AppCompatActivity(), TabLayoutMediator.TabConfiguratio
         setViewPagerAdapter()
         TabLayoutMediator(tabLayout,viewPager,this).attach()
 
-       // println(tabLayout.selectedTabPosition.toString())
-
     }
 
     fun setViewPagerAdapter() {
         val viewPager2Adapter = ViewPager2Adapter(this);
-        var fragmentList : MutableList<Fragment> = mutableListOf(
-            FirstDateFragment(),
-            SecondDateFragment(),
-            ThirdDateFragment(),
+        val current = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+
+        var fragmentList: MutableList<Fragment> = mutableListOf(
+            FixturesFragment(current.minusDays(1).format(formatter)),
+            FixturesFragment(current.format(formatter)),
+            FixturesFragment(current.plusDays(1).format(formatter)),
             CalendarFragment()
         )
         viewPager2Adapter.setData(fragmentList)
         viewPager.adapter = viewPager2Adapter
-
     }
 
     override fun onConfigureTab(tab: TabLayout.Tab, position: Int) {

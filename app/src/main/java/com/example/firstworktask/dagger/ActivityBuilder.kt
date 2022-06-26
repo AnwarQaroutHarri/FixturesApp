@@ -2,10 +2,8 @@ package com.example.firstworktask.dagger
 
 import com.example.firstworktask.SwipeViewActivity
 import com.example.firstworktask.main.CalendarFragment
-import com.example.firstworktask.main.FirstDateFragment
-import com.example.firstworktask.main.SecondDateFragment
-import com.example.firstworktask.main.ThirdDateFragment
-import com.example.firstworktask.second.SecondActivity
+import com.example.firstworktask.main.FixturesFragment
+import com.example.firstworktask.second.FixtureDetailsActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -13,21 +11,15 @@ import dagger.android.ContributesAndroidInjector
 abstract class ActivityBuilder {
 
     @ContributesAndroidInjector
-    abstract fun contributeMainActivity() : SwipeViewActivity
+    abstract fun contributeMainActivity(): SwipeViewActivity
 
     @ContributesAndroidInjector
-    abstract fun contributeSecondActivity() : SecondActivity
+    abstract fun contributeSecondActivity(): FixtureDetailsActivity
 
     @ContributesAndroidInjector
-    abstract fun contributeFirstDateFragment() : FirstDateFragment
+    abstract fun contributeCalendarFragment(): CalendarFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeSecondDateFragment() : SecondDateFragment
-
-    @ContributesAndroidInjector
-    abstract fun contributeThirdDateFragment() : ThirdDateFragment
-
-    @ContributesAndroidInjector
-    abstract fun contributeCalendarFragment() : CalendarFragment
+    abstract fun contributeFixturesFragment(): FixturesFragment
 
 }

@@ -1,8 +1,8 @@
 package com.example.firstworktask.dagger
 
 import androidx.lifecycle.ViewModel
-import com.example.firstworktask.main.MainViewModel
-import com.example.firstworktask.second.SecondViewModel
+import com.example.firstworktask.main.FixturesViewModel
+import com.example.firstworktask.second.FixtureDetailsViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -19,16 +19,15 @@ abstract class ViewModelModule {
      */
 
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(FixturesViewModel::class)
+    abstract fun splashViewModel(viewModel: FixturesViewModel): ViewModel
 
     @Binds
     @IntoMap
-    @ViewModelKey(MainViewModel::class)
-    abstract fun splashViewModel(viewModel: MainViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(SecondViewModel::class)
-    abstract fun splashSecondViewModel(viewModel: SecondViewModel): ViewModel
+    @ViewModelKey(FixtureDetailsViewModel::class)
+    abstract fun splashSecondViewModel(viewModel: FixtureDetailsViewModel): ViewModel
 
 
 
