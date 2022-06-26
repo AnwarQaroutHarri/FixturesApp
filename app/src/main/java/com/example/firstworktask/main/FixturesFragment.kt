@@ -14,15 +14,9 @@ import javax.inject.Inject
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private var ARG_DATE = "date"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FirstDateFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class FixturesFragment(val date: String) : DaggerFragment() {
+class FixturesFragment() : DaggerFragment() {
 
 
     private lateinit var binding: FragmentFirstDateBinding
@@ -37,6 +31,8 @@ class FixturesFragment(val date: String) : DaggerFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = viewModelFactory.create(FixturesViewModel::class.java)
+        ARG_DATE = arguments?.getSerializable("date").toString()
+
     }
 
     override fun onCreateView(
@@ -55,12 +51,21 @@ class FixturesFragment(val date: String) : DaggerFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.getFixturesByDate(date)
+        viewModel.getFixturesByDate(ARG_DATE)
         viewModel.fixtureRequiredFields.observe(viewLifecycleOwner, Observer { e ->
             adapter.submitList(e)
         })
         super.onViewCreated(view, savedInstanceState)
     }
 
+    companion object {
+        fun newInstance(date: String): FixturesFragment {
+            val args = Bundle()
+            args.putString("date", date)
+            val fragment = FixturesFragment()
+            fragment.arguments = args
+            return fragment
+        }
+    }
 
 }

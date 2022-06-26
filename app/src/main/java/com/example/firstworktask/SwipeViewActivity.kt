@@ -2,6 +2,7 @@ package com.example.firstworktask
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
@@ -36,11 +37,12 @@ class SwipeViewActivity : AppCompatActivity(), TabLayoutMediator.TabConfiguratio
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
         var fragmentList: MutableList<Fragment> = mutableListOf(
-            FixturesFragment(current.minusDays(1).format(formatter)),
-            FixturesFragment(current.format(formatter)),
-            FixturesFragment(current.plusDays(1).format(formatter)),
+            FixturesFragment.newInstance(current.minusDays(1).format(formatter)),
+            FixturesFragment.newInstance(current.format(formatter)),
+            FixturesFragment.newInstance(current.plusDays(1).format(formatter)),
             CalendarFragment()
         )
+
         viewPager2Adapter.setData(fragmentList)
         viewPager.adapter = viewPager2Adapter
     }
