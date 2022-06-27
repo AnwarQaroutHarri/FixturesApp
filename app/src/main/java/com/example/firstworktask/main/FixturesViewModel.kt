@@ -1,6 +1,5 @@
 package com.example.firstworktask.main
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.firstworktask.main.models.FixtureModelPackage.Response

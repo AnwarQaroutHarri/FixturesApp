@@ -5,8 +5,6 @@ import com.example.firstworktask.utils.Constants.Companion.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
-import dagger.hilt.android.components.FragmentComponent
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -21,7 +19,7 @@ class RetrofitInstance {
     @Singleton
     @Provides
     fun provideRetrofitInstance() : FixtureAPI {
-        val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor()
+        val interceptor = HttpLoggingInterceptor()
          val client = OkHttpClient.Builder().apply {
             interceptor.level = (HttpLoggingInterceptor.Level.BODY)
             addInterceptor(FixtureInterceptor())

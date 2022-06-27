@@ -6,13 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firstworktask.databinding.FragmentFirstDateBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import javax.inject.Inject
 
 /**
  * This fragment observes the StateFlow that contains fixtures
@@ -21,11 +19,11 @@ import javax.inject.Inject
 private var ARG_DATE = "date"
 
 @AndroidEntryPoint
-class FixturesFragment() : Fragment() {
+class FixturesFragment : Fragment() {
 
 
     private lateinit var binding: FragmentFirstDateBinding
-    val viewModel : FixturesViewModel by viewModels()
+    private val viewModel : FixturesViewModel by viewModels()
 
     private var adapter = DiffUtilAdapterMain()
 
@@ -39,7 +37,7 @@ class FixturesFragment() : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = FragmentFirstDateBinding.inflate(inflater, container, false)
         binding.MatchesRecyclerView.layoutManager = LinearLayoutManager(context)

@@ -2,7 +2,6 @@ package com.example.firstworktask
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
@@ -19,9 +18,9 @@ import java.time.format.DateTimeFormatter
 @AndroidEntryPoint
 class SwipeViewActivity : AppCompatActivity(), TabLayoutMediator.TabConfigurationStrategy {
 
-    lateinit var viewPager: ViewPager2
-    lateinit var tabLayout: TabLayout
-    var titles: MutableList<String> = mutableListOf("Yesterday","Today","Tomorrow","Date")
+    private lateinit var viewPager: ViewPager2
+    private lateinit var tabLayout: TabLayout
+    private var titles: MutableList<String> = mutableListOf("Yesterday","Today","Tomorrow","Date")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,12 +38,12 @@ class SwipeViewActivity : AppCompatActivity(), TabLayoutMediator.TabConfiguratio
     /*
     Instantiate a ViewPagerAdapter, and populate it with fragments, then set it to ViewPager.
      */
-    fun setViewPagerAdapter() {
-        val viewPager2Adapter = ViewPager2Adapter(this);
+    private fun setViewPagerAdapter() {
+        val viewPager2Adapter = ViewPager2Adapter(this)
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
-        var fragmentList: MutableList<Fragment> = mutableListOf(
+        val fragmentList: MutableList<Fragment> = mutableListOf(
             FixturesFragment.newInstance(current.minusDays(1).format(formatter)),
             FixturesFragment.newInstance(current.format(formatter)),
             FixturesFragment.newInstance(current.plusDays(1).format(formatter)),

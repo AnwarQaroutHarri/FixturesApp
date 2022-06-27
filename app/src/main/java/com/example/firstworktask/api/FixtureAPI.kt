@@ -2,12 +2,6 @@ package com.example.firstworktask.api
 
 import com.example.firstworktask.main.models.FixtureModelPackage.FixtureModel
 import com.example.firstworktask.second.models.FixtureDetailsPackage.FixtureDetailsModel
-import dagger.Module
-import dagger.hilt.EntryPoint
-import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
-import dagger.hilt.android.components.FragmentComponent
-
 import retrofit2.http.GET
 import retrofit2.http.Query
 

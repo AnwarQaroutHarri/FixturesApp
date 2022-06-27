@@ -4,18 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CalendarView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firstworktask.databinding.FragmentCalendarBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import javax.inject.Inject
 
 /**
  * This fragment has a CalendarView and a RecyclerView.
@@ -27,15 +22,10 @@ class CalendarFragment : Fragment() {
 
     private lateinit var binding: FragmentCalendarBinding
 
-    val viewModel : FixturesViewModel by viewModels()
+    private val viewModel : FixturesViewModel by viewModels()
 
     private var adapter = DiffUtilAdapterMain()
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,21 +46,18 @@ class CalendarFragment : Fragment() {
         view: View,
         savedInstanceState: Bundle?
     ) {
-        binding.calendarView.setOnDateChangeListener(
-            CalendarView.OnDateChangeListener { _, i, i2, i3 ->
-                var month: String = ""
-                month = if(i2 != 12 && i2 != 11 && i2 != 10){
-                    "0$i2"
-                } else {
-                    i2.toString()
-                }
-                val date = "$i-$month-$i3"
-                println(date)
-                binding.MatchesRecyclerView.alpha = 1F
-                binding.calendarView.alpha = 0F
-                viewModel.getFixturesByDate(date)
+        binding.calendarView.setOnDateChangeListener { _, i, i2, i3 ->
+            val month: String = if (i2 != 12 && i2 != 11 && i2 != 10) {
+                "0$i2"
+            } else {
+                i2.toString()
             }
-        )
+            val date = "$i-$month-$i3"
+            println(date)
+            binding.MatchesRecyclerView.alpha = 1F
+            binding.calendarView.alpha = 0F
+            viewModel.getFixturesByDate(date)
+        }
 
         lifecycleScope.launchWhenStarted {
             viewModel.fixtureRequiredFields.collectLatest {

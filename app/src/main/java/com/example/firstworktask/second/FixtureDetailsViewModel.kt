@@ -1,14 +1,10 @@
 package com.example.firstworktask.second
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.firstworktask.main.repository.FixtureRepository
-import com.example.firstworktask.second.models.FixtureDetailsPackage.FixtureDetailsModel
 import com.example.firstworktask.second.repository.FixtureDetailsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

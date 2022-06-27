@@ -3,8 +3,6 @@ package com.example.firstworktask.main
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 /**
  * This is the ViewPager2 Adapter which works anywhere.

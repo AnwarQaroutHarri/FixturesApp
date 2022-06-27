@@ -5,9 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -59,11 +57,11 @@ class FixtureViewHolder(
 
 
 
-        binding.firstTeamTextView.text = data.teams.home.name.toString()
-        binding.secondTeamTextView.text = data.teams.away.name.toString()
+        binding.firstTeamTextView.text = data.teams.home.name
+        binding.secondTeamTextView.text = data.teams.away.name
 
 
-        if(data.fixture.status.long.equals("Not Started")) {
+        if(data.fixture.status.long == "Not Started") {
             binding.homeTeamScore.text = "TBD"
             binding.awayTeamScore.text = "TBD"
         }
@@ -74,7 +72,7 @@ class FixtureViewHolder(
             binding.awayTeamScore.text = data.score.fulltime.away.toString()
 
         }
-        binding.dateTV.text = data.fixture.date.toString()
+        binding.dateTV.text = data.fixture.date
         Glide.with(itemView.context).load(data.teams.home.logo).into(binding.firstTeamImageView)
         Glide.with(itemView.context).load(data.teams.away.logo).into(binding.secondTeamImageView)
     }

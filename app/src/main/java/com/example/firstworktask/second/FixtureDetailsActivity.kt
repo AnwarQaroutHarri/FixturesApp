@@ -5,12 +5,10 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.example.firstworktask.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import javax.inject.Inject
 
 /**
  * Second Activity
@@ -20,7 +18,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class FixtureDetailsActivity : AppCompatActivity() {
 
-  lateinit var listView: ListView
+  private lateinit var listView: ListView
   private val viewModel: FixtureDetailsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +32,7 @@ class FixtureDetailsActivity : AppCompatActivity() {
 
         lifecycleScope.launchWhenStarted {
             viewModel.fixtureDetails.collectLatest {
-                listView.adapter = ArrayAdapter<String>(applicationContext, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,it)
+                listView.adapter = ArrayAdapter(applicationContext, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,it)
             }
         }
 
