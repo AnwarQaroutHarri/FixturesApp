@@ -1,14 +1,9 @@
 package com.example.firstworktask.dagger
 
-import dagger.android.AndroidInjector
-import dagger.android.DaggerApplication
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-class MyApplication : DaggerApplication() {
-    lateinit var appComponent: ApplicationComponent
+@HiltAndroidApp
+class MyApplication : Application() {
 
-
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        appComponent = DaggerApplicationComponent.builder().application(this).build()
-        return appComponent
-    }
 }

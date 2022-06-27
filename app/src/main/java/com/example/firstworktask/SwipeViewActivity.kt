@@ -12,9 +12,11 @@ import com.example.firstworktask.main.FixturesFragment
 import com.example.firstworktask.main.ViewPager2Adapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+@AndroidEntryPoint
 class SwipeViewActivity : AppCompatActivity(), TabLayoutMediator.TabConfigurationStrategy {
     lateinit var viewPager: ViewPager2
     lateinit var tabLayout: TabLayout

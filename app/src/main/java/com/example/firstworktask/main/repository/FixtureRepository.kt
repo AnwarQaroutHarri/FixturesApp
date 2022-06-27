@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.firstworktask.Retrofit.RetrofitInstance
 import com.example.firstworktask.api.FixtureAPI
 import com.example.firstworktask.main.models.FixtureModelPackage.Response
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.net.URL
@@ -14,7 +15,6 @@ import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.inject.Inject
-
 
 class FixtureRepository @Inject constructor(){
     @Inject

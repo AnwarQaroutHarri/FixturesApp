@@ -6,9 +6,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.firstworktask.main.repository.FixtureRepository
 import com.example.firstworktask.second.models.FixtureDetailsPackage.FixtureDetailsModel
 import com.example.firstworktask.second.repository.FixtureDetailsRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class FixtureDetailsViewModel @Inject constructor(private val fixtureDetailsRepository: FixtureDetailsRepository): ViewModel() {
     private var fixtureDetailsData : MutableList<String> = mutableListOf()
     private var _fixtureDetails: MutableLiveData<MutableList<String>> = MutableLiveData()

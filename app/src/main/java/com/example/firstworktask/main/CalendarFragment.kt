@@ -6,29 +6,32 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CalendarView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.firstworktask.dagger.ViewModelFactory
 import com.example.firstworktask.databinding.FragmentCalendarBinding
-import dagger.android.support.DaggerFragment
+import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
-class CalendarFragment : DaggerFragment() {
+@AndroidEntryPoint
+class CalendarFragment : Fragment() {
 
     private lateinit var binding: FragmentCalendarBinding
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
+   // @Inject
+   // lateinit var viewModelFactory: ViewModelFactory
 
-    private lateinit var viewModel: FixturesViewModel
+    val viewModel : FixturesViewModel by viewModels()
+
+   // private lateinit var viewModel: FixturesViewModel
     private var adapter = DiffUtilAdapterMain()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = viewModelFactory.create(FixturesViewModel::class.java)
+     //   viewModel = viewModelFactory.create(FixturesViewModel::class.java)
 
     }
 

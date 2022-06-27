@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.firstworktask.Retrofit.RetrofitInstance
 import com.example.firstworktask.api.FixtureAPI
 import com.example.firstworktask.second.models.FixtureDetailsPackage.FixtureDetailsModel
+import dagger.hilt.android.AndroidEntryPoint
 import java.lang.StringBuilder
 import javax.inject.Inject
 
