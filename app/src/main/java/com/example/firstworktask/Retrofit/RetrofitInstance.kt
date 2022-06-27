@@ -33,24 +33,6 @@ class RetrofitInstance {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(FixtureAPI::class.java)
-
-
     }
-    /*
-    private val retrofit by lazy {
-        Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .client(client)
-            .addConverterFactory(GsonConverterFactory.create())
-            //.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-
-            .build()
-    }
-
-     val fixtureAPI : FixtureAPI by lazy {
-        retrofit.create(FixtureAPI::class.java)
-    }
-
-     */
 
 }

@@ -6,8 +6,10 @@ import android.widget.ListView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.example.firstworktask.R
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 
 /**
@@ -17,26 +19,24 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class FixtureDetailsActivity : AppCompatActivity() {
-  lateinit var listView: ListView
-    //@Inject
-   // lateinit var viewModelFactory: ViewModelFactory
-  private val viewModel: FixtureDetailsViewModel by viewModels()
-    override fun onCreate(savedInstanceState: Bundle?) {
-       /* val binding: ActivitySecondBinding =
-            DataBindingUtil.setContentView(this, R.layout.activity_second)
 
-        */
+  lateinit var listView: ListView
+  private val viewModel: FixtureDetailsViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
-       listView = findViewById(R.id.listView)
+        listView = findViewById(R.id.listView)
 
         val id = intent.getIntExtra("id",0) //get the ID of the selected fixture
-       // val viewModel : FixtureDetailsViewModel = viewModelFactory.create(FixtureDetailsViewModel::class.java) //inject the viewmodel
-        viewModel.getFixtureDetailsByID(id)
-        viewModel.fixtureDetails.observe(this, Observer { e ->
-            listView.adapter = ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,e)
-        })
+        viewModel.getFixtureDetailsByID(id) //update the stateflow with fixture details from given id
 
+        lifecycleScope.launchWhenStarted {
+            viewModel.fixtureDetails.collectLatest {
+                listView.adapter = ArrayAdapter<String>(applicationContext, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,it)
+            }
+        }
 
     }
 }

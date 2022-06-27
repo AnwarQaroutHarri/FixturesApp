@@ -6,34 +6,31 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-class ViewPager2Adapter(fragment: FragmentActivity) : FragmentStateAdapter(fragment) {
+/**
+ * This is the ViewPager2 Adapter which works anywhere.
+ * Populate the fragments list using setData.
+ * Can remove setData and make it hard-coded and specific for a fragment.
+ * To do that, in createFragment, if(position==0) Fragment1.newInstance()... etc
+ */
+class ViewPager2Adapter(
+    fragment: FragmentActivity
+    ) : FragmentStateAdapter(fragment) {
+
     private var fragments: MutableList<Fragment> = mutableListOf()
+
     override fun getItemCount(): Int {
         return fragments.size
     }
 
-    override fun createFragment(position: Int): Fragment {
-
+    override fun createFragment(
+        position: Int
+    ): Fragment {
         return fragments[position]
-
-        /*
-        if(position == 0) {
-            return FixturesFragment.newInstance(current.minusDays(1).format(formatter))
-        }
-        if(position == 1) {
-            return FixturesFragment.newInstance(current.format(formatter))
-        }
-        if(position == 2){
-            return FixturesFragment.newInstance(current.plusDays(1).format(formatter))
-        }
-        return CalendarFragment()
-
-         */
-
     }
 
-
-    fun setData(fragments: MutableList<Fragment>) {
+    fun setData(
+        fragments: MutableList<Fragment>
+    ) {
         this.fragments = fragments
     }
 

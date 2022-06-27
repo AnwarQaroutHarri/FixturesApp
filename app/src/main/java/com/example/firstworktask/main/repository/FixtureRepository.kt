@@ -17,6 +17,7 @@ import java.util.*
 import javax.inject.Inject
 
 class FixtureRepository @Inject constructor(){
+    
     @Inject
     lateinit var retrofitInstance: FixtureAPI
 

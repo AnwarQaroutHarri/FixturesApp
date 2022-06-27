@@ -8,37 +8,40 @@ import android.widget.CalendarView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firstworktask.databinding.FragmentCalendarBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
+/**
+ * This fragment has a CalendarView and a RecyclerView.
+ * First, the RecyclerView is hidden, until the user chooses a date from the CalendarView.
+ * When the user chooses a date, the CalendarView is hidden, and the Recycler is populated.
+ */
 @AndroidEntryPoint
 class CalendarFragment : Fragment() {
 
     private lateinit var binding: FragmentCalendarBinding
 
-   // @Inject
-   // lateinit var viewModelFactory: ViewModelFactory
-
     val viewModel : FixturesViewModel by viewModels()
 
-   // private lateinit var viewModel: FixturesViewModel
     private var adapter = DiffUtilAdapterMain()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-     //   viewModel = viewModelFactory.create(FixturesViewModel::class.java)
 
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+
         binding = FragmentCalendarBinding.inflate(inflater,container,false)
         adapter = DiffUtilAdapterMain()
         binding.MatchesRecyclerView.layoutManager = LinearLayoutManager(context)
@@ -49,16 +52,17 @@ class CalendarFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?
+    ) {
         binding.calendarView.setOnDateChangeListener(
-            CalendarView.OnDateChangeListener { calendarView, i, i2, i3 ->
-                println(calendarView.dateTextAppearance.toString())
+            CalendarView.OnDateChangeListener { _, i, i2, i3 ->
                 var month: String = ""
-                if(i2 != 12 && i2 != 11 && i2 != 10){
-                    month = "0" + i2.toString()
-                }
-                else {
-                    month = i2.toString()
+                month = if(i2 != 12 && i2 != 11 && i2 != 10){
+                    "0$i2"
+                } else {
+                    i2.toString()
                 }
                 val date = "$i-$month-$i3"
                 println(date)
@@ -68,9 +72,11 @@ class CalendarFragment : Fragment() {
             }
         )
 
-        viewModel.fixtureRequiredFields.observe(viewLifecycleOwner, Observer { e->
-            adapter.submitList(e)
-        })
+        lifecycleScope.launchWhenStarted {
+            viewModel.fixtureRequiredFields.collectLatest {
+                adapter.submitList(it)
+            }
+        }
         super.onViewCreated(view, savedInstanceState)
     }
 

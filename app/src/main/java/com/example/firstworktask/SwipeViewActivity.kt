@@ -18,9 +18,11 @@ import java.time.format.DateTimeFormatter
 
 @AndroidEntryPoint
 class SwipeViewActivity : AppCompatActivity(), TabLayoutMediator.TabConfigurationStrategy {
+
     lateinit var viewPager: ViewPager2
     lateinit var tabLayout: TabLayout
     var titles: MutableList<String> = mutableListOf("Yesterday","Today","Tomorrow","Date")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_swipe_view)
@@ -28,11 +30,15 @@ class SwipeViewActivity : AppCompatActivity(), TabLayoutMediator.TabConfiguratio
         val binding: ActivitySwipeViewBinding = DataBindingUtil.setContentView(this, R.layout.activity_swipe_view)
        viewPager = binding.viewPager2
         tabLayout = binding.tabLayout
+
         setViewPagerAdapter()
-        TabLayoutMediator(tabLayout,viewPager,this).attach()
+        TabLayoutMediator(tabLayout,viewPager,this).attach() //attach tablayout to viewpager
 
     }
 
+    /*
+    Instantiate a ViewPagerAdapter, and populate it with fragments, then set it to ViewPager.
+     */
     fun setViewPagerAdapter() {
         val viewPager2Adapter = ViewPager2Adapter(this);
         val current = LocalDateTime.now()
@@ -49,7 +55,15 @@ class SwipeViewActivity : AppCompatActivity(), TabLayoutMediator.TabConfiguratio
         viewPager.adapter = viewPager2Adapter
     }
 
-    override fun onConfigureTab(tab: TabLayout.Tab, position: Int) {
+    /*
+        This function is needed to bind tabs to their titles (in this case, a string list).
+     */
+    override fun onConfigureTab(
+        tab: TabLayout.Tab,
+        position: Int
+    ) {
+
         tab.text = titles[position]
+
     }
 }

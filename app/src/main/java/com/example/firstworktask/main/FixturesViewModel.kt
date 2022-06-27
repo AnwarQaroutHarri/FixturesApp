@@ -6,14 +6,16 @@ import androidx.lifecycle.viewModelScope
 import com.example.firstworktask.main.models.FixtureModelPackage.Response
 import com.example.firstworktask.main.repository.FixtureRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FixturesViewModel @Inject constructor(private val fixtureRepository: FixtureRepository) :
-    ViewModel() {
+class FixturesViewModel @Inject constructor(
+    private val fixtureRepository: FixtureRepository
+    ) : ViewModel() {
 
-    private var _fixtureRequiredFields: MutableLiveData<List<Response>> = MutableLiveData()
+    private var _fixtureRequiredFields = MutableStateFlow<List<Response>>(listOf())
     val fixtureRequiredFields
         get() = _fixtureRequiredFields
 

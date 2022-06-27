@@ -1,4 +1,4 @@
-package com.example.firstworktask.dagger
+package com.example.firstworktask.hilt
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
