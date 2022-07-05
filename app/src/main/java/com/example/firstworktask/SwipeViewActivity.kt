@@ -1,6 +1,7 @@
 package com.example.firstworktask
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -33,7 +34,11 @@ class SwipeViewActivity : AppCompatActivity(), TabLayoutMediator.TabConfiguratio
         setViewPagerAdapter()
         TabLayoutMediator(tabLayout,viewPager,this).attach() //attach tablayout to viewpager
 
+
+
     }
+
+
 
     /*
     Instantiate a ViewPagerAdapter, and populate it with fragments, then set it to ViewPager.

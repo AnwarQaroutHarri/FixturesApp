@@ -7,6 +7,22 @@
     tools:context=".CalendarFragment">
 
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:id="@+id/errorMessage"
+        android:visibility="visible"
+        android:layout_gravity="center_horizontal"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/reloadBtn"
+        android:text="@string/reload"
+        android:layout_gravity="center"/>
+
     <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="wrap_content"

@@ -1,6 +1,7 @@
 package com.example.firstworktask.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +29,7 @@ class CalendarFragment : Fragment() {
 
     private val viewModel : FixturesViewModel by viewModels()
 
-    private var adapter = DiffUtilAdapterMain()
+    private var adapter = FixturesAdapter()
 
 
     override fun onCreateView(
@@ -37,11 +38,12 @@ class CalendarFragment : Fragment() {
     ): View {
 
         binding = FragmentCalendarBinding.inflate(inflater,container,false)
-        adapter = DiffUtilAdapterMain()
         binding.MatchesRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.MatchesRecyclerView.adapter = adapter
         binding.MatchesRecyclerView.isClickable = true
         binding.MatchesRecyclerView.alpha = 0F
+
+
 
         return binding.root
     }
@@ -56,19 +58,49 @@ class CalendarFragment : Fragment() {
             } else {
                 i2.toString()
             }
-            val dateStr = "$i-$month-$i3"
+
+            val day: String = if (i3.toString().length != 2){
+                "0$i3"
+            } else {
+                i3.toString()
+            }
+
+            val dateStr = "$i-$month-$day"
             val date = LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-            println(date)
+
             binding.MatchesRecyclerView.alpha = 1F
             binding.calendarView.alpha = 0F
             viewModel.getFixturesByDate(date)
+
+            /* Reload button to do api call again */
+            binding.reloadBtn.setOnClickListener {
+                viewModel.getFixturesByDate(date)
+            }
+
         }
 
+        /* Check for errors and hide/show UI elements accordingly */
         lifecycleScope.launchWhenStarted {
-            viewModel.fixtureRequiredFields.collectLatest {
-                adapter.submitList(it)
+            viewModel.error.collectLatest {
+                if(it.isNotEmpty()){
+                    binding.MatchesRecyclerView.alpha = 0F
+                    binding.errorMessage.text = it
+                    binding.errorMessage.visibility = View.VISIBLE
+                    binding.reloadBtn.visibility = View.VISIBLE
+                }
+                else {
+                    binding.reloadBtn.visibility = View.GONE
+                    binding.MatchesRecyclerView.alpha = 1F
+                    binding.errorMessage.visibility = View.GONE
+                    viewModel.fixtureRequiredFields.collect { item ->
+                        adapter.submitList(item)
+                    }
+                }
             }
         }
+
+
+
         super.onViewCreated(view, savedInstanceState)
     }
 

@@ -16,7 +16,7 @@ import com.example.firstworktask.main.models.models.Response
 import com.example.firstworktask.second.FixtureDetailsActivity
 
 
-class DiffUtilAdapterMain
+class FixturesAdapter
     : ListAdapter<Response, FixtureViewHolder> (UserItemDiffCallback())
 {
 

@@ -1,7 +1,7 @@
 package com.example.firstworktask.second
 
 import android.os.Bundle
-import android.util.Log
+import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.activity.viewModels
@@ -37,5 +37,22 @@ class FixtureDetailsActivity : AppCompatActivity() {
             }
         }
 
+        // calling the action bar
+        var actionBar = getSupportActionBar()
+
+        // showing the back button in action bar
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+        }
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+
+        if (id == android.R.id.home) {
+            finish()
+        }
+        return true
     }
 }

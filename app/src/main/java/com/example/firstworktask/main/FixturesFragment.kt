@@ -1,5 +1,6 @@
 package com.example.firstworktask.main
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firstworktask.databinding.FragmentFirstDateBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.combine
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -30,7 +32,7 @@ class FixturesFragment : Fragment() {
     private lateinit var binding: FragmentFirstDateBinding
     private val viewModel : FixturesViewModel by viewModels()
 
-    private var adapter = DiffUtilAdapterMain()
+    private var adapter = FixturesAdapter()
 
     override fun onCreate(
         savedInstanceState: Bundle?
@@ -48,6 +50,9 @@ class FixturesFragment : Fragment() {
         binding.MatchesRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.MatchesRecyclerView.adapter = adapter
 
+        binding.reloadBtn.setOnClickListener {
+            viewModel.getFixturesByDate(date)
+        }
         return binding.root
     }
 
@@ -56,9 +61,24 @@ class FixturesFragment : Fragment() {
     ) {
 
         viewModel.getFixturesByDate(date)
+
+        /* Check for errors and hide/show UI elements accordingly */
         lifecycleScope.launchWhenStarted {
-            viewModel.fixtureRequiredFields.collectLatest {
-                adapter.submitList(it)
+            viewModel.error.collectLatest {
+                if(it.isNotEmpty()){
+                    binding.MatchesRecyclerView.alpha = 0F
+                    binding.errorMessage.text = it
+                    binding.errorMessage.visibility = View.VISIBLE
+                    binding.reloadBtn.visibility = View.VISIBLE
+                }
+                else {
+                    binding.reloadBtn.visibility = View.GONE
+                    binding.MatchesRecyclerView.alpha = 1F
+                    binding.errorMessage.visibility = View.GONE
+                    viewModel.fixtureRequiredFields.collect { item ->
+                        adapter.submitList(item)
+                    }
+                }
             }
         }
 
