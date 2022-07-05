@@ -11,6 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firstworktask.databinding.FragmentCalendarBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 /**
  * This fragment has a CalendarView and a RecyclerView.
@@ -52,7 +56,8 @@ class CalendarFragment : Fragment() {
             } else {
                 i2.toString()
             }
-            val date = "$i-$month-$i3"
+            val dateStr = "$i-$month-$i3"
+            val date = LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
             println(date)
             binding.MatchesRecyclerView.alpha = 1F
             binding.calendarView.alpha = 0F

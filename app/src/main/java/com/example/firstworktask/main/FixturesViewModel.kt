@@ -7,6 +7,7 @@ import com.example.firstworktask.main.repository.FixtureRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,7 +20,7 @@ class FixturesViewModel @Inject constructor(
         get() = _fixtureRequiredFields
 
 
-    fun getFixturesByDate(date: String) {
+    fun getFixturesByDate(date: LocalDate) {
         viewModelScope.launch {
             _fixtureRequiredFields.value = fixtureRepository.getFixturesByDate(date)
         }

@@ -4,6 +4,8 @@ import com.example.firstworktask.main.models.FixtureModelPackage.FixtureModel
 import com.example.firstworktask.second.models.FixtureDetailsPackage.FixtureDetailsModel
 import retrofit2.http.GET
 import retrofit2.http.Query
+import java.time.LocalDate
+import java.util.*
 
 interface FixtureAPI {
 
@@ -11,7 +13,7 @@ interface FixtureAPI {
     suspend fun getFixtureDetailsById(@Query("id") id: Int) : FixtureDetailsModel
 
     @GET("fixtures")
-    suspend fun getFixturesByDate(@Query("date") date: String) : FixtureModel
+    suspend fun getFixturesByDate(@Query("date") date: LocalDate) : FixtureModel
 
 
     //fixtures?league=39&season=2022&from=2022-01-01&to=2022-12-12

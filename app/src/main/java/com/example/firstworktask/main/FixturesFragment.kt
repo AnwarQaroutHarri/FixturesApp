@@ -1,6 +1,7 @@
 package com.example.firstworktask.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,15 +12,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firstworktask.databinding.FragmentFirstDateBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 /**
  * This fragment observes the StateFlow that contains fixtures
  * Populates a DiffUtilAdapter with fixtures and binds it to a RecyclerView.
  */
-private var ARG_DATE = "date"
+private const val ARG_DATE = "date"
 
 @AndroidEntryPoint
 class FixturesFragment : Fragment() {
+
+    lateinit var date: LocalDate
 
 
     private lateinit var binding: FragmentFirstDateBinding
@@ -31,7 +36,7 @@ class FixturesFragment : Fragment() {
         savedInstanceState: Bundle?
     ) {
         super.onCreate(savedInstanceState)
-        ARG_DATE = arguments?.getSerializable("date").toString()
+        date = LocalDate.parse(arguments?.getString(ARG_DATE),DateTimeFormatter.ofPattern("yyyy-MM-dd"))
     }
 
     override fun onCreateView(
@@ -50,7 +55,7 @@ class FixturesFragment : Fragment() {
         view: View, savedInstanceState: Bundle?
     ) {
 
-        viewModel.getFixturesByDate(ARG_DATE)
+        viewModel.getFixturesByDate(date)
         lifecycleScope.launchWhenStarted {
             viewModel.fixtureRequiredFields.collectLatest {
                 adapter.submitList(it)
@@ -63,9 +68,10 @@ class FixturesFragment : Fragment() {
     companion object {
         fun newInstance(date: String): FixturesFragment {
             val args = Bundle()
-            args.putString("date", date)
+            args.putString(ARG_DATE, date)
             val fragment = FixturesFragment()
             fragment.arguments = args
+            Log.d("details","created argument with date $date")
             return fragment
         }
     }

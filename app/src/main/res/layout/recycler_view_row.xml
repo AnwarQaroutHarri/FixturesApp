@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="com.example.firstworktask.main.models.FixtureModelPackage.Response"/>
+        <variable
+            name="fixture"
+            type="Response" />
     </data>
 
     <androidx.cardview.widget.CardView

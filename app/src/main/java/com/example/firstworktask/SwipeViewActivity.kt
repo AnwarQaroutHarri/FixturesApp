@@ -43,6 +43,7 @@ class SwipeViewActivity : AppCompatActivity(), TabLayoutMediator.TabConfiguratio
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
+
         val fragmentList: MutableList<Fragment> = mutableListOf(
             FixturesFragment.newInstance(current.minusDays(1).format(formatter)),
             FixturesFragment.newInstance(current.format(formatter)),
