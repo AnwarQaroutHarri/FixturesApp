@@ -42,7 +42,6 @@ class FixturesFragment : Fragment() {
         binding = FragmentFirstDateBinding.inflate(inflater, container, false)
         binding.MatchesRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.MatchesRecyclerView.adapter = adapter
-        binding.MatchesRecyclerView.isClickable = true
 
         return binding.root
     }

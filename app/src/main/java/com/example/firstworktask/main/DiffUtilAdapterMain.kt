@@ -42,11 +42,6 @@ class FixtureViewHolder(
     val binding = RecyclerViewRowBinding.bind(itemView)
     @SuppressLint("SetTextI18n")
     fun bindTo(data : Response){
-        itemView.layoutParams = LinearLayout.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT
-        )
-
 
         /* Send intent to SecondActivity with the selected fixture ID */
         itemView.setOnClickListener {

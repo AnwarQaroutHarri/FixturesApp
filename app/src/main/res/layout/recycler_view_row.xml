@@ -13,10 +13,11 @@
         app:cardElevation="10dp"
         app:cardCornerRadius="20dp"
         android:layout_margin="10dp"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="#7A7474"
         app:cardMaxElevation="12dp"
         app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true">
+        app:cardUseCompatPadding="true"
+        >
 
 
         <androidx.constraintlayout.widget.ConstraintLayout

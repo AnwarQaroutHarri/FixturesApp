@@ -10,6 +10,7 @@
         <entry key="app/src/main/res/layout/blank_fragment.xml" value="0.20625" />
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.13854166666666667" />
         <entry key="app/src/main/res/layout/fragment_first_date.xml" value="0.20625" />
+        <entry key="app/src/main/res/layout/fragment_fixtures.xml" value="0.19114583333333332" />
         <entry key="app/src/main/res/layout/fragment_second_date.xml" value="0.20652173913043478" />
         <entry key="app/src/main/res/layout/fragment_third_date.xml" value="0.20652173913043478" />
         <entry key="app/src/main/res/layout/recycler_view_row.xml" value="0.2253143310546875" />
