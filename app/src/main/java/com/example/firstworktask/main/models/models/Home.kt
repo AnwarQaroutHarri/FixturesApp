@@ -1,6 +1,9 @@
-package com.example.firstworktask.main.models.FixtureModelPackage
+package com.example.firstworktask.main.models.models
 
 import android.graphics.Bitmap
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
 
 data class Home(
     val id: Int,

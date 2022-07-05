@@ -1,4 +1,4 @@
-package com.example.firstworktask.main.models.FixtureModelPackage
+package com.example.firstworktask.main.models.models
 
 data class Response(
     val fixture: Fixture,

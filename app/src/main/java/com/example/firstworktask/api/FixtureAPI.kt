@@ -1,11 +1,10 @@
 package com.example.firstworktask.api
 
-import com.example.firstworktask.main.models.FixtureModelPackage.FixtureModel
+import com.example.firstworktask.main.models.models.FixtureModel
 import com.example.firstworktask.second.models.FixtureDetailsPackage.FixtureDetailsModel
 import retrofit2.http.GET
 import retrofit2.http.Query
 import java.time.LocalDate
-import java.util.*
 
 interface FixtureAPI {
 

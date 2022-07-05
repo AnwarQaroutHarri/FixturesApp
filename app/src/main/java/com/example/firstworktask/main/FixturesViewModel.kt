@@ -2,7 +2,7 @@ package com.example.firstworktask.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.firstworktask.main.models.FixtureModelPackage.Response
+import com.example.firstworktask.main.models.models.Response
 import com.example.firstworktask.main.repository.FixtureRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

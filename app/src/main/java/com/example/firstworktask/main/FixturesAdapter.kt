@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.firstworktask.R
 import com.example.firstworktask.databinding.RecyclerViewRowBinding
-import com.example.firstworktask.main.models.FixtureModelPackage.Response
+import com.example.firstworktask.main.models.models.Response
 import com.example.firstworktask.second.FixtureDetailsActivity
 
 
@@ -42,7 +42,7 @@ class FixtureViewHolder(
     val binding = RecyclerViewRowBinding.bind(itemView)
     @SuppressLint("SetTextI18n")
     fun bindTo(data : Response){
-
+        binding.data = data
         /* Send intent to SecondActivity with the selected fixture ID */
         itemView.setOnClickListener {
             val intent = Intent(itemView.context,FixtureDetailsActivity::class.java)
@@ -52,11 +52,7 @@ class FixtureViewHolder(
 
 
 
-        binding.firstTeamTextView.text = data.teams.home.name
-        binding.secondTeamTextView.text = data.teams.away.name
-
-
-        if(data.fixture.status.long == "Not Started") {
+     /*   if(data.fixture.status.long == "Not Started") {
             binding.homeTeamScore.text = "TBD"
             binding.awayTeamScore.text = "TBD"
         }
@@ -67,9 +63,8 @@ class FixtureViewHolder(
             binding.awayTeamScore.text = data.score.fulltime.away.toString()
 
         }
-        binding.dateTV.text = data.fixture.date
-        Glide.with(itemView.context).load(data.teams.home.logo).into(binding.firstTeamImageView)
-        Glide.with(itemView.context).load(data.teams.away.logo).into(binding.secondTeamImageView)
+
+      */
     }
 }
 

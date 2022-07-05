@@ -1,7 +1,7 @@
 package com.example.firstworktask.main.repository
 
 import com.example.firstworktask.api.FixtureAPI
-import com.example.firstworktask.main.models.FixtureModelPackage.Response
+import com.example.firstworktask.main.models.models.Response
 import java.time.LocalDate
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
